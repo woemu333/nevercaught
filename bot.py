@@ -1,10 +1,10 @@
-from discum.utils.slash import SlashCommander
-import discum
+# from discum.utils.slash import SlashCommander
+# import discum
 import os
 from PIL import Image
 from keras._tf_keras.keras.models import load_model
 import numpy as np
-from keras._tf_keras.keras.preprocessing import image
+# from keras._tf_keras.keras.preprocessing import image
 from keras._tf_keras.keras.preprocessing.image import img_to_array
 import selfcord
 from selfcord.ext import tasks
@@ -64,7 +64,7 @@ def predict_category(img_url):
 
 
 client = selfcord.Client()
-client2 = discum.Client(token=config['bot']['token'], log=False)
+# client2 = discum.Client(token=config['bot']['token'], log=False)
 
 @client.event
 async def on_ready():
