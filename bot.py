@@ -418,6 +418,17 @@ async def on_message(message: selfcord.Message):
                     if subcommand.name == 'completion':
                         await subcommand.__call__(channel=message.channel, user=message.author)
 
+    if 'give ball ' in message.content:
+        hexid = message.content.split(' ',2)[2]
+        if hexid[0] == '#':
+            hexid = hexid[1:]
+        commands = [command async for command in message.channel.slash_commands()]
+        for command in commands:
+            if command.name == 'balls':
+                for subcommand in command.children:
+                    if subcommand.name == 'give':
+                        await subcommand.__call__(channel=message.channel, user=message.author, countryball=int(hexid, 16))
+
         # slashCmds = client2.getSlashCommands('999736048596816014').json()
         # s = SlashCommander(slashCmds)
         # data = s.get(['completion'])
