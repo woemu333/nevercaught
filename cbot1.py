@@ -1,3 +1,4 @@
+#!~/.venvs/3.12/bin/python3.12
 import os
 from PIL import Image
 from keras._tf_keras.keras.models import load_model

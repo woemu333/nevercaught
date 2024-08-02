@@ -1,3 +1,4 @@
+#!~/.venvs/3.12/bin/python3.12
 import selfcord
 from selfcord.ext import tasks
 import os
