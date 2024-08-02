@@ -77,13 +77,13 @@ webhookurl = 'https://discord.com/api/webhooks/1268374793040695316/2trCno1syYd4r
 ballsdex_userid = 999736048596816014
 
 
-@tasks.loop(minutes=1)
+@tasks.loop(minutes=0.5)
 async def task1():
     for serverid in config['server_ids']:
         guild = client.get_guild(serverid)
         channel = guild.text_channels[0]
         await channel.send(random.randint(1,1000))
-        await asyncio.sleep(10)
+        await asyncio.sleep(8)
 
 
 @client.event
@@ -121,10 +121,10 @@ async def on_message(message: selfcord.Message):
             if 'shiny countryball' in message.content:
                 special = f' (SHINY) {mention}'
             
-            printmsg = f'Caught {ball} ({stats}){special}'
+            printmsg = f'Caught {ball} `({stats})`{special}'
             print(printmsg)
 
-            catchmsg = f'Caught {ball} ({stats}){special} {message.jump_url}'
+            catchmsg = f'Caught {ball} `({stats})`{special} {message.jump_url}'
             webhook = DiscordWebhook(url=webhookurl, content=catchmsg)
             response = webhook.execute()
             
