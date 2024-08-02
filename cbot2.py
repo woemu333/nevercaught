@@ -17,6 +17,7 @@ client = selfcord.Client()
 
 @client.event
 async def on_ready():
+    await asyncio.sleep(15)
     task1.start()
     print('ready')
 
