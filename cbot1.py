@@ -127,9 +127,27 @@ async def on_message(message: selfcord.Message):
             catchmsg = f'Caught {ball} ({stats}){special} {message.jump_url}'
             webhook = DiscordWebhook(url=webhookurl, content=catchmsg)
             response = webhook.execute()
+            
+            give_user = client.get_user(1268896529351966771)
+            give_guild = client.get_guild(1254513690976325742)
+            give_channel = selfcord.utils.get(give_guild.channels, name='gives')
+            hexid = stats.split(', ')[0]
+            if hexid[0] == '#':
+                hexid = hexid[1:]
+            commands = [command async for command in give_channel.slash_commands()]
+            for command in commands:
+                if command.name == 'balls':
+                    for subcommand in command.children:
+                        if subcommand.name == 'give':
+                            await subcommand.__call__(channel=give_channel, user=give_user, countryball=int(hexid, 16))
 
         elif message.content == f'<@{client.user.id}> Wrong name!':
-            print(f'{ball} missed in {message.guild.name}')
+            printmsg = 'Wrong name!'
+            print(printmsg)
+
+            catchmsg = f'Wrong name! {mention} {message.jump_url}'
+            webhook = DiscordWebhook(url=webhookurl, content=catchmsg)
+            response = webhook.execute()
 
 @client.event
 async def on_modal(modal: selfcord.Modal):
