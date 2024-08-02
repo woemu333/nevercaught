@@ -20,15 +20,13 @@ async def on_ready():
     task1.start()
     print('ready')
 
-serveridlist = [1268358108942696481,1268358043846971393,1268357963148558480]
-
 
 @tasks.loop(minutes=1)
 async def task1():
-    for serverid in serveridlist:
-        await asyncio.sleep(2)
+    for serverid in config['server_ids']:
         guild = client.get_guild(serverid)
         channel = guild.text_channels[0]
         await channel.send(random.randint(1,1000))
+        await asyncio.sleep(10)
 
-client.run(config['bot']['token2'])
+client.run(config['token2'])
