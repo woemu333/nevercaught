@@ -60,7 +60,7 @@ def predict_category(img_url):
     predictions = model.predict(img_array)
     predicted_class = np.argmax(predictions, axis=1)
     
-    return os.listdir('database/')[list(predicted_class)[0]]
+    return sorted[list(predicted_class)[0]]
 
 
 client = selfcord.Client()
@@ -388,6 +388,7 @@ string = '''1. British Empire
 
 countryballs = string.split('\n')
 countryballs = [country.split('.')[1] for country in countryballs]
+sorted = countryballs.sort()
 
 catchball = []
 webhookurl = 'https://discord.com/api/webhooks/1268374793040695316/2trCno1syYd4r2l9uUXlCT3MqGF4BS9Rl0s9_TwEZ8zlOxnxCUMIvOUBOsHqTDV8tfya'
