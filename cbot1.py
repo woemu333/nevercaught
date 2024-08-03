@@ -129,7 +129,7 @@ async def on_message(message: selfcord.Message):
             response = webhook.execute()
             
             give_user = client.get_user(1268896529351966771)
-            give_guild = client.get_guild(1269080968816496823)
+            give_guild = message.guild
             give_channel = selfcord.utils.get(give_guild.channels, name='general')
             hexid = stats.split(', ')[0]
             if hexid[0] == '#':
