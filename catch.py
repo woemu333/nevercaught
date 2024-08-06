@@ -70,7 +70,7 @@ async def task1():
             channel = guild.text_channels[0]
             print(guild.name,channel.name)
             await channel.send(random.randint(1,1000))
-            await asyncio.sleep(8)
+            await asyncio.sleep(2)
         except Exception as e:
             print()
             print(client.get_guild(serverid).name)
