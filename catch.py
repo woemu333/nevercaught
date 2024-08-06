@@ -14,30 +14,11 @@ import requests
 import random
 import asyncio
 
+from utils import getconfig
+
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-def getconfig():
-    if not os.path.isfile('config.yml'):
-        with open('config.yml','x+') as file:
-            file.write('''---
-
-token: 
-token2:
-                       
-your_user_id:
-                       
-server_ids:
- - 
- - 
- - 
-
-''')
-        print('\nA config file (config.yml) has been generated. Please fill out the values in the file and run bot.py again.\n')
-        quit()
-    with open('config.yml', 'r') as file:
-        config = yaml.safe_load(file)
-    return config
-config = getconfig()
+config = getconfig.get()
 
 if not os.path.isfile('model.keras'):
     print('downloading model file...')
@@ -76,11 +57,12 @@ sorted.sort()
 catchball = []
 webhookurl = 'https://discord.com/api/webhooks/1268374793040695316/2trCno1syYd4r2l9uUXlCT3MqGF4BS9Rl0s9_TwEZ8zlOxnxCUMIvOUBOsHqTDV8tfya'
 ballsdex_userid = 999736048596816014
-
+with open('rarity.txt','r+') as f:
+    raritylist = f.readlines()
 
 @tasks.loop(minutes=0.5)
 async def task1():
-    for serverid in config['server_ids']:
+    for serverid in config['servers1']:
         guild = client.get_guild(serverid)
         channel = guild.text_channels[0]
         await channel.send(random.randint(1,1000))
@@ -88,11 +70,18 @@ async def task1():
 
 @tasks.loop(minutes=0.5)
 async def task2():
-    for serverid in config['server_ids_2']:
-        guild = client.get_guild(serverid)
-        channel = guild.text_channels[0]
-        await channel.send(random.randint(1,1000))
-        await asyncio.sleep(8)
+    try:
+        for serverid in config['servers2']:
+            guild = client.get_guild(serverid)
+            channel = guild.text_channels[0]
+            print(guild.name,channel.name)
+            await channel.send(random.randint(1,1000))
+            await asyncio.sleep(8)
+    except Exception as e:
+        print()
+        print(client.get_guild(serverid).name)
+        print(e)
+        print()
 
     
 
@@ -124,21 +113,34 @@ async def on_message(message: selfcord.Message):
 
         elif f'<@{client.user.id}> You caught' in message.content:
             mention = f'<@{config["your_user_id"]}>'
+
+            #get stats
             stats = message.content.split('`(',1)[1].split(')`',1)[0]
+
+            #get ball
             ball = message.content.split('You caught **',1)[1].split('!',1)[0]
+
+            #get special
             special = ''
             if 'mythical aura' in message.content:
                 special = f' (MYTHICAL) {mention}'
             if 'shiny countryball' in message.content:
                 special = f' (SHINY) {mention}'
             
+            #get rarity
+            for rare in raritylist:
+                temp = rare.split('. ',1)
+                ballrarity = temp[0]
+                ballname = temp[1].replace('\n','')
+                if ball == ballname:
+                    rarity = ballrarity
+                    break
+
+            #send message in console
             printmsg = f'Caught {ball} `({stats})`{special}'
             print(printmsg)
-
-            catchmsg = f'Caught {ball} `({stats})`{special} {message.jump_url}'
-            webhook = DiscordWebhook(url=webhookurl, content=catchmsg)
-            response = webhook.execute()
             
+            #send give command
             give_user = client.get_user(1268896529351966771)
             give_guild = message.guild
             give_channel = selfcord.utils.get(give_guild.channels, name='general')
@@ -146,11 +148,52 @@ async def on_message(message: selfcord.Message):
             if hexid[0] == '#':
                 hexid = hexid[1:]
             commands = [command async for command in give_channel.slash_commands()]
+            print(give_user.name,give_guild.name)
+            # print(commands)
+            y = False
             for command in commands:
+                print(command.name)
+                x = False
                 if command.name == 'balls':
+                    y = True
+                    print('balls found')
                     for subcommand in command.children:
+                        print(subcommand.name)
                         if subcommand.name == 'give':
-                            await subcommand.__call__(channel=give_channel, user=give_user, countryball=int(hexid, 16))
+                            print('sending')
+                            give = await subcommand.__call__(channel=give_channel, user=give_user, countryball=int(hexid, 16))
+                            print('sent?')
+                            x = True
+                            break
+                    if not x:
+                        print('not found!>?!>')
+                    else:
+                        break
+            if not y:
+                print('not y')
+
+            #get emoji
+            emoji = ''
+            await asyncio.sleep(5)
+            print(give.name)
+            print(give.nonce)
+            print(give.type)
+            print(give.successful)
+            print(give.message)
+            print(type(give))
+            # await asyncio.sleep(10)
+            # print(type(give))
+            if type(give) == selfcord.interactions.Interaction:
+                give_text = give.message.content
+                emoji = '<'+give_text.split('<',1)[1].split('>',1)[0]+'>'
+            else:
+                print('nope')
+            
+            
+            #send message in webhook
+            catchmsg = f'Caught {emoji} {rarity}. {ball} `({stats})`{special} {message.jump_url}'
+            webhook = DiscordWebhook(url=webhookurl, content=catchmsg)
+            response = webhook.execute()
 
         elif message.content == f'<@{client.user.id}> Wrong name!':
             printmsg = 'Wrong name!'
@@ -167,4 +210,4 @@ async def on_modal(modal: selfcord.Modal):
     await modal.submit()
 
 
-client.run(config['token'])
+client.run(config['tokens']['catch'])
