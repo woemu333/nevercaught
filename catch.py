@@ -77,9 +77,6 @@ async def task1():
             print(e)
             print()
 
-@tasks.loop(minutes=0.5)
-async def task2():
-    
 
     
 
