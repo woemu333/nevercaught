@@ -26,7 +26,7 @@ client = selfcord.Client()
 @client.event
 async def on_ready():
     global servers
-    servers = list(config['servers1']) + list(config['servers2'])
+    servers = list(config['servers3'])# + list(config['servers2'])
     task1.start()
     print("Running as {0} ({1})!".format(client.user.name, client.user.id))
 
@@ -63,18 +63,6 @@ async def task1():
 @client.event
 async def on_message(message: selfcord.Message):
     global catchball
-
-    if 'give ball ' in message.content and message.author.id == int(config['your_user_id']):
-        hexid = message.content.split(' ',2)[2]
-        if hexid[0] == '#':
-            hexid = hexid[1:]
-        commands = [command async for command in message.channel.slash_commands()]
-        for command in commands:
-            if command.name == 'balls':
-                for subcommand in command.children:
-                    if subcommand.name == 'give':
-                        await subcommand.__call__(channel=message.channel, user=message.author, countryball=int(hexid, 16))
-
     
     if message.author.id == ballsdex_userid:
         if message.content == 'A wild countryball appeared!':
@@ -185,4 +173,4 @@ async def on_modal(modal: selfcord.Modal):
     await modal.submit()
 
 
-client.run(config['tokens']['catch'])
+client.run(config['tokens']['catch2'])
