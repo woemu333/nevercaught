@@ -14,7 +14,6 @@ import random
 import asyncio
 
 from utils import getconfig
-from utils import predict
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
