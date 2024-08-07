@@ -29,6 +29,6 @@ async def task1():
         print(guild.name)
         channel = guild.text_channels[0]
         await channel.send(random.randint(1,1000))
-        await asyncio.sleep(8)
+        await asyncio.sleep(2)
 
 client.run(config['tokens']['own2'])
