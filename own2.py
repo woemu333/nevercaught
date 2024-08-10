@@ -24,9 +24,7 @@ async def on_ready():
 @tasks.loop(minutes=0.5)
 async def task1():
     for serverid in config['servers2']:
-
         guild = client.get_guild(serverid)
-        print(guild.name)
         channel = guild.text_channels[0]
         await channel.send(random.randint(1,1000))
         await asyncio.sleep(2)

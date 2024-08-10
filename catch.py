@@ -195,6 +195,120 @@ async def on_message(message: selfcord.Message):
             webhook = DiscordWebhook(url=webhookurl, content=catchmsg)
             response = webhook.execute()
 
+
+
+
+
+
+
+
+
+@client.event
+async def on_message_edit(before: selfcord.Message, message: selfcord.Message):
+    if message.author.id == ballsdex_userid:
+        
+
+        if f'<@{client.user.id}> You caught' in message.content:
+            print('detected a catch message!')
+            mention = f'<@{config["your_user_id"]}>'
+
+            #get stats
+            stats = message.content.split('`(',1)[1].split(')`',1)[0]
+
+            #get ball
+            ball = message.content.split('You caught **',1)[1].split('!',1)[0]
+
+            #get special
+            special = ''
+            if 'mythical aura' in message.content:
+                special = f' (MYTHICAL) {mention}'
+            if 'shiny countryball' in message.content:
+                special = f' (SHINY) {mention}'
+            
+            #get rarity
+            for rare in raritylist:
+                temp = rare.split('. ',1)
+                ballrarity = temp[0]
+                ballname = temp[1].replace('\n','')
+                if ball == ballname:
+                    rarity = ballrarity
+                    break
+
+            #send message in console
+            printmsg = f'Caught {ball} `({stats})`{special}'
+            print(printmsg)
+            
+            #send give command
+            give_user = client.get_user(1268896529351966771)
+            give_guild = message.guild
+            give_channel = selfcord.utils.get(give_guild.channels, name='general')
+            hexid = stats.split(', ')[0]
+            if hexid[0] == '#':
+                hexid = hexid[1:]
+            commands = [command async for command in give_channel.slash_commands()]
+            print(give_user.name,give_guild.name)
+            # print(commands)
+            y = False
+            for command in commands:
+                print(command.name)
+                x = False
+                if command.name == 'balls':
+                    y = True
+                    print('balls found')
+                    for subcommand in command.children:
+                        print(subcommand.name)
+                        if subcommand.name == 'give':
+                            print('sending')
+                            give = await subcommand.__call__(channel=give_channel, user=give_user, countryball=int(hexid, 16))
+                            print('sent?')
+                            x = True
+                            break
+                    if not x:
+                        print('not found!>?!>')
+                    else:
+                        break
+            if not y:
+                print('not y')
+
+            #get emoji
+            emoji = ''
+            await asyncio.sleep(5)
+            print(give.name)
+            print(give.nonce)
+            print(give.type)
+            print(give.successful)
+            print(give.message)
+            print(type(give))
+            # await asyncio.sleep(10)
+            # print(type(give))
+            if type(give) == selfcord.interactions.Interaction:
+                give_text = give.message.content
+                emoji = '<'+give_text.split('<',1)[1].split('>',1)[0]+'>'
+            else:
+                print('nope')
+            
+            
+            #send message in webhook
+            catchmsg = f'Caught {emoji} {rarity}. {ball} `({stats})`{special} {message.jump_url}'
+            webhook = DiscordWebhook(url=webhookurl, content=catchmsg)
+            response = webhook.execute()
+
+        elif message.content == f'<@{client.user.id}> Wrong name!':
+            printmsg = 'Wrong name!'
+            print(printmsg)
+
+            mention = f'<@{config["your_user_id"]}>'
+            catchmsg = f'Wrong name! {mention} {message.jump_url}'
+            webhook = DiscordWebhook(url=webhookurl, content=catchmsg)
+            response = webhook.execute()
+
+
+
+
+
+
+
+
 @client.event
 async def on_modal(modal: selfcord.Modal):
     global catchball

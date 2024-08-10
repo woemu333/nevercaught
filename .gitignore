@@ -6,7 +6,7 @@ config.yml
 /.ignore/
 
 model.keras
-
+model2.keras
 # C extensions
 *.so
 

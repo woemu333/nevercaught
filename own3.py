@@ -16,7 +16,7 @@ client = selfcord.Client()
 
 @client.event
 async def on_ready():
-    await asyncio.sleep(20)
+    await asyncio.sleep(25)
     task1.start()
     print('ready own3')
 
@@ -24,9 +24,7 @@ async def on_ready():
 @tasks.loop(minutes=0.5)
 async def task1():
     for serverid in config['servers3']:
-
         guild = client.get_guild(serverid)
-        print(guild.name)
         channel = guild.text_channels[0]
         await channel.send(random.randint(1,1000))
         await asyncio.sleep(2)
