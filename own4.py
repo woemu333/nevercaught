@@ -18,12 +18,12 @@ client = selfcord.Client()
 async def on_ready():
     await asyncio.sleep(20)
     task1.start()
-    print('ready own2')
+    print('ready own4')
 
 
 @tasks.loop(minutes=0.5)
 async def task1():
-    for serverid in config['servers2']:
+    for serverid in config['servers4']:
         guild = client.get_guild(serverid)
         if guild is None:
             guild = await client.fetch_guild(serverid)
@@ -31,4 +31,4 @@ async def task1():
         await channel.send(random.randint(1,1000))
         await asyncio.sleep(2)
 
-client.run(config['tokens']['own2'])
+client.run(config['tokens']['own4'])
