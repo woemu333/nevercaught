@@ -2,11 +2,19 @@
 __pycache__/
 *.py[cod]
 *$py.class
+
+
+logins.txt
+
 config.yml
 /.ignore/
 
 model.keras
 model2.keras
+model3.keras
+model4.keras
+model5.keras
+model6.keras
 # C extensions
 *.so
 

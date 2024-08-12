@@ -1,48 +1,48 @@
-1. British Empire
-1. Reichtangle
-1. Russian Empire
-4. Mongol Empire
-5. Kalmar Union
-5. Roman Empire
-7. Polish-Lithuanian Commonwealth
-8. Qin Dynasty
-9. German Empire
-10. Holy Roman Empire
-11. Austria-Hungary
-11. Hunnic Empire
-11. Japanese Empire
-11. Republic of China
-11. Soviet Union
-11. United States
-17. Vatican
-18. Russia
-19. China
-20. Austrian Empire
-21. India
-22. Ancient Greece
-22. Japan
-22. Korea
-22. Napoleonic France
-22. Ottoman Empire
-27. Republic of Venice
-27. South Korea
-29. France
-29. Spanish Empire
-31. Achaemenid Empire
-31. Macedon
-31. United Kingdom
-34. Pakistan
-35. Ancient Egypt
-35. Brazil
-35. Byzantium
-35. Greenland
-35. Portuguese Empire
-35. Qing
-41. British Raj
-41. Carthage
-41. Italy
-41. Kingdom of Italy
-45. Egypt
+1. 255. British Empire
+1. 153. Reichtangle
+1. 156. Russian Empire
+4. 449. Mongol Empire
+5. 176. Kalmar Union
+5. 215. Roman Empire
+7. 443. Polish-Lithuanian Commonwealth
+8. 211. Qin Dynasty
+9. 154. German Empire
+10. 430. Holy Roman Empire
+11. 155. Austria-Hungary
+11. 202. Hunnic Empire
+11. 257. Japanese Empire
+11. 256. Republic of China
+11. 187. Soviet Union
+11. 6. United States
+17. 167. Vatican
+18. 2. Russia
+19. 3. China
+20. 425. Austrian Empire
+21. 4. India
+22. 204. Ancient Greece
+22. 5. Japan
+22. 182. Korea
+22. 189. Napoleonic France
+22. 157. Ottoman Empire
+27. 445. Republic of Venice
+27. 7. South Korea
+29. 8. France
+29. 194. Spanish Empire
+31. 203. Achaemenid Empire
+31. 214. Macedon
+31. 9. United Kingdom
+34. 10. Pakistan
+35. 199. Ancient Egypt
+35. 11. Brazil
+35. 188. Byzantium
+35. 174. Greenland
+35. 286. Portuguese Empire
+35. 161. Qing
+41. 158. British Raj
+41. 209. Carthage
+41. 12. Italy
+41. 254. Kingdom of Italy
+45. 13. Egypt
 45. Russian Soviet Federative Socialist Republic
 47. Turkey
 48. French Empire
