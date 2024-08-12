@@ -109,9 +109,9 @@ async def on_message(message: selfcord.Message):
             
             #get rarity
             for rare in raritylist:
-                temp = rare.split('. ',1)
+                temp = rare.split('. ',2)
                 ballrarity = temp[0]
-                ballname = temp[1].replace('\n','')
+                ballname = temp[2].replace('\n','')
                 if ball == ballname:
                     rarity = ballrarity
                     break
@@ -212,9 +212,9 @@ async def on_message_edit(before: selfcord.Message, message: selfcord.Message):
             
             #get rarity
             for rare in raritylist:
-                temp = rare.split('. ',1)
+                temp = rare.split('. ',2)
                 ballrarity = temp[0]
-                ballname = temp[1].replace('\n','')
+                ballname = temp[2].replace('\n','')
                 if ball == ballname:
                     rarity = ballrarity
                     break
