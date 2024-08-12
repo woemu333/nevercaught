@@ -227,6 +227,8 @@ async def on_message_edit(before: selfcord.Message, message: selfcord.Message):
             give_user = await client.fetch_user(1268896529351966771)
             give_guild = message.guild
             give_channel = selfcord.utils.get(give_guild.channels, name='general')
+            if give_channel is None:
+                give_channel = message.channel
             hexid = stats.split(', ')[0]
             if hexid[0] == '#':
                 hexid = hexid[1:]
