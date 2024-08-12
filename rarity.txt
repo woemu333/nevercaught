@@ -43,269 +43,269 @@
 41. 12. Italy
 41. 254. Kingdom of Italy
 45. 13. Egypt
-45. Russian Soviet Federative Socialist Republic
-47. Turkey
-48. French Empire
-49. Iran
-49. Kingdom of Greece
-51. African Union
-51. Arab League
-51. Kingdom of Hungary
-51. Confederate States
-51. Gaul
-51. Germania
-51. Indonesia
-51. Mayan Empire
-51. Yugoslavia
-60. Germany
-61. Australia
-61. Hong Kong
-61. Israel
-61. Xiongnu
-65. Swedish Empire
-66. Spain
-67. Antarctica
-67. Ming Dynasty
-67. Saudi Arabia
-70. Franks
-70. League of Nations
-70. Monaco
-70. Union of South Africa
-74. Ukraine
-75. Canada
-76. Poland
-76. Kingdom of Brandenburg
-78. Sweden
-79. Macau
-79. Scotland
-79. South Africa
-82. Greece
-83. Vietnam
-84. Safavid Empire
-85. Thailand
-85. Parthian Empire
-87. North Korea
-88. England
-88. European Union
-88. Francoist Spain
-88. Manchukuo
-88. NATO
-88. Republican Spain
-88. United Arab Republic
-88. United Nations
-88. Warsaw Pact
-88. Weimar Republic
-88. Zhou
-99. Yuan Dynasty
-100. Algeria
-100. Argentina
-100. Bangladesh
-100. Colombia
-100. Czechia
-100. Iraq
-100. Malaysia
-100. Mexico
-100. Myanmar
-100. Netherlands
-100. Nigeria
-100. Norway
-112. Peru
-112. Philippines
-112. Portugal
-112. Prussia
-112. Romania
-112. Singapore
-112. Switzerland
-112. Syria
-112. Tuvalu
-112. UAE
-112. Venezuela
-123. Mali Empire
-124. Ukrainian Soviet Socialist Republic
-125. Ancient Athens
-125. Ancient Sparta
-125. Babylon
-125. Czechoslovakia
-125. Ethiopian Empire
-125. French Indochina
-125. Nauru
-125. Numidia
-125. Quebec
-125. Siam
-125. South Vietnam
-125. Taiwan
-125. Wales
-125. West Germany
-139. Cuba
-140. Kingdom of Egypt
-141. Mughal Empire
-142. Angola
-142. Austria
-142. Azerbaijan
-142. Bahamas
-142. Belarus
-142. Belgium
-142. Bolivia
-142. Bulgaria
-142. Chile
-142. Croatia
-142. Cyprus
-142. DR Congo
-142. Denmark
-142. Ecuador
-142. Ethiopia
-142. Finland
-142. Hungary
-142. Jordan
-142. Kazakhstan
-142. Kenya
-142. Kuwait
-142. Libya
-142. Morocco
-142. North Vietnam
-142. Oman
-142. Qatar
-142. San Marino
-142. Serbia
-142. Slovakia
-142. Sri Lanka
-142. Sudan
-142. Tunisia
-142. Turkmenistan
-142. Uzbekistan
-142. Yemen
-142. Iberian Union
-178. Faroe Islands
-178. Trinidad and Tobago
-180. East Germany
-180. Free France
-180. Jamaica
-180. Maldives
-180. Northern Ireland
-180. Tibet
-180. Golden Horde
-180. Vichy France
-188. Andorra
-188. Brunei
-188. Byelorussian Soviet Socialist Republic
-188. Micronesia
-188. Tonga
-188. Grand Duchy of Tuscany
-188. Khedivate of Egypt
-195. Khmer Empire
-196. Barbados
-196. Marshall Islands
-198. Armenia
-198. Bahrain
-198. Cambodia
-198. Chad
-198. Equatorial Guinea
-198. Congo Free State
-198. Georgia
-198. Ghana
-198. Guatemala
-198. Guyana
-198. Ireland
-198. Kyrgyzstan
-198. Latvia
-198. Lithuania
-198. Mali
-198. Malta
-198. Fatimid Caliphate
-198. Mongolia
-198. New Zealand
-198. Samoa
-198. Slovenia
-198. Togo
-198. Uganda
-198. Uruguay
-198. Zambia
-198. Zimbabwe
-224. Malawi
-225. Kingdom of Sardinia
-226. Costa Rica
-226. Dominica
-226. Guinea-Bissau
-226. Sao Tome and Principe
-226. Tannu Tuva
-231. Seychelles
-232. Afghanistan
-232. Albania
-232. Belize
-232. Bosnia and Herzegovina
-232. Botswana
-232. Cameroon
-232. Ceylon
-232. Congo
-232. Cote d'Ivoire
-232. Dominican Republic
-232. Eritrea
-232. Estonia
-232. Eswatini
-232. Fiji
-232. Free City of Danzig
-232. Gambia
-232. Haiti
-232. Honduras
-232. Khiva
-232. Laos
-232. Lebanon
-232. Liechtenstein
-232. Moldova
-232. Mozambique
-232. Nepal
-232. Nicaragua
-232. Niger
-232. Palestine
-232. Paraguay
-232. Saint Kitts and Nevis
-232. Saint Lucia
-232. Somaliland
-232. South Sudan
-232. South Yemen
-232. Tajikistan
-232. Tanzania
-232. Western Sahara
-269. Cape Verde
-269. Guinea
-269. Grenada
-269. Palau
-269. St. Vincent and the Grenadines
-269. Solomon Islands
-269. Vanuatu
-276. Principality of Moldavia
-277. Qajar Dynasty
-278. Antigua and Barbuda
-278. Benin
-278. Majapahit
-278. Bhutan
-278. Burkina Faso
-278. Nanda Empire
-278. Burundi
-278. Central African Republic
-278. Comoros
-278. El Salvador
-278. Gabon
-278. Hejaz
-278. Iceland
-278. Kiribati
-278. Kosovo
-278. Lesotho
-278. Liberia
-278. Luxembourg
-278. Madagascar
-278. Mauritania
-278. Mauritius
-278. Montenegro
-278. Namibia
-278. North Macedonia
-278. Panama
-278. Papua New Guinea
-278. Paris Commune
-278. Rwanda
-278. Senegal
-278. Sierra Leone
-278. Somalia
-278. Suriname
-278. Timor-Leste
-311. Djibouti
+45. 262. Russian Soviet Federative Socialist Republic
+47. 14. Turkey
+48. 427. French Empire
+49. 15. Iran
+49. 162. Kingdom of Greece
+51. 195. African Union
+51. 275. Arab League
+51. 434. Kingdom of Hungary
+51. 160. Confederate States
+51. 206. Gaul
+51. 210. Germania
+51. 16. Indonesia
+51. 208. Mayan Empire
+51. 177. Yugoslavia
+60. 17. Germany
+61. 18. Australia
+61. 241. Hong Kong
+61. 19. Israel
+61. 201. Xiongnu
+65. 477. Swedish Empire
+66. 20. Spain
+67. 171. Antarctica
+67. 439. Ming Dynasty
+67. 21. Saudi Arabia
+70. 205. Franks
+70. 168. League of Nations
+70. 229. Monaco
+70. 159. Union of South Africa
+74. 23. Ukraine
+75. 24. Canada
+76. 25. Poland
+76. 433. Kingdom of Brandenburg
+78. 26. Sweden
+79. 343. Macau
+79. 175. Scotland
+79. 27. South Africa
+82. 28. Greece
+83. 52. Vietnam
+84. 446. Safavid Empire
+85. 30. Thailand
+85. 442. Parthian Empire
+87. 31. North Korea
+88. 344. England
+88. 79. European Union
+88. 284. Francoist Spain
+88. 268. Manchukuo
+88. 80. NATO
+88. 283. Republican Spain
+88. 274. United Arab Republic
+88. 78. United Nations
+88. 243. Warsaw Pact
+88. 267. Weimar Republic
+88. 212. Zhou
+99. 448. Yuan Dynasty
+100. 32. Algeria
+100. 41. Argentina
+100. 47. Bangladesh
+100. 45. Colombia
+100. 42. Czechia
+100. 35. Iraq
+100. 49. Malaysia
+100. 44. Mexico
+100. 40. Myanmar
+100. 38. Netherlands
+100. 36. Nigeria
+100. 34. Norway
+112. 51. Peru
+112. 53. Philippines
+112. 50. Portugal
+112. 166. Prussia
+112. 39. Romania
+112. 43. Singapore
+112. 33. Switzerland
+112. 48. Syria
+112. 227. Tuvalu
+112. 37. UAE
+112. 46. Venezuela
+123. 438. Mali Empire
+124. 277. Ukrainian Soviet Socialist Republic
+125. 200. Ancient Athens
+125. 198. Ancient Sparta
+125. 207. Babylon
+125. 258. Czechoslovakia
+125. 271. Ethiopian Empire
+125. 266. French Indochina
+125. 334. Nauru
+125. 213. Numidia
+125. 180. Quebec
+125. 164. Siam
+125. 269. South Vietnam
+125. 22. Taiwan
+125. 341. Wales
+125. 272. West Germany
+139. 72. Cuba
+140. 279. Kingdom of Egypt
+141. 440. Mughal Empire
+142. 68. Angola
+142. 60. Austria
+142. 65. Azerbaijan
+142. 236. Bahamas
+142. 54. Belarus
+142. 71. Belgium
+142. 87. Bolivia
+142. 69. Bulgaria
+142. 55. Chile
+142. 64. Croatia
+142. 192. Cyprus
+142. 81. DR Congo
+142. 59. Denmark
+142. 70. Ecuador
+142. 67. Ethiopia
+142. 61. Finland
+142. 58. Hungary
+142. 77. Jordan
+142. 66. Kazakhstan
+142. 86. Kenya
+142. 73. Kuwait
+142. 74. Libya
+142. 57. Morocco
+142. 261. North Vietnam
+142. 83. Oman
+142. 82. Qatar
+142. 228. San Marino
+142. 63. Serbia
+142. 62. Slovakia
+142. 84. Sri Lanka
+142. 75. Sudan
+142. 76. Tunisia
+142. 88. Turkmenistan
+142. 56. Uzbekistan
+142. 85. Yemen
+142. 431. Iberian Union
+178. 366. Faroe Islands
+178. 376. Trinidad and Tobago
+180. 273. East Germany
+180. 259. Free France
+180. 186. Jamaica
+180. 193. Maldives
+180. 342. Northern Ireland
+180. 260. Tibet
+180. 428. Golden Horde
+180. 276. Vichy France
+188. 326. Andorra
+188. 377. Brunei
+188. 264. Byelorussian Soviet Socialist Republic
+188. 333. Micronesia
+188. 339. Tonga
+188. 429. Grand Duchy of Tuscany
+188. 435. Khedivate of Egypt
+195. 432. Khmer Empire
+196. 359. Barbados
+196. 368. Marshall Islands
+198. 102. Armenia
+198. 103. Bahrain
+198. 105. Cambodia
+198. 92. Chad
+198. 330. Equatorial Guinea
+198. 281. Congo Free State
+198. 93. Georgia
+198. 100. Ghana
+198. 96. Guatemala
+198. 233. Guyana
+198. 101. Ireland
+198. 95. Kyrgyzstan
+198. 99. Latvia
+198. 90. Lithuania
+198. 104. Mali
+198. 230. Malta
+198. 426. Fatimid Caliphate
+198. 106. Mongolia
+198. 89. New Zealand
+198. 336. Samoa
+198. 91. Slovenia
+198. 338. Togo
+198. 97. Uganda
+198. 107. Uruguay
+198. 94. Zambia
+198. 98. Zimbabwe
+224. 367. Malawi
+225. 436. Kingdom of Sardinia
+226. 329. Costa Rica
+226. 362. Dominica
+226. 365. Guinea-Bissau
+226. 374. Sao Tome and Principe
+226. 263. Tannu Tuva
+231. 190. Seychelles
+232. 124. Afghanistan
+232. 121. Albania
+232. 360. Belize
+232. 130. Bosnia and Herzegovina
+232. 112. Botswana
+232. 109. Cameroon
+232. 278. Ceylon
+232. 123. Congo
+232. 117. Cote d'Ivoire
+232. 126. Dominican Republic
+232. 131. Eritrea
+232. 113. Estonia
+232. 331. Eswatini
+232. 234. Fiji
+232. 287. Free City of Danzig
+232. 183. Gambia
+232. 127. Haiti
+232. 114. Honduras
+232. 280. Khiva
+232. 128. Laos
+232. 120. Lebanon
+232. 231. Liechtenstein
+232. 110. Moldova
+232. 122. Mozambique
+232. 125. Nepal
+232. 129. Nicaragua
+232. 111. Niger
+232. 119. Palestine
+232. 115. Paraguay
+232. 372. Saint Kitts and Nevis
+232. 335. Saint Lucia
+232. 270. Somaliland
+232. 108. South Sudan
+232. 265. South Yemen
+232. 116. Tajikistan
+232. 118. Tanzania
+232. 181. Western Sahara
+269. 327. Cape Verde
+269. 364. Guinea
+269. 363. Grenada
+269. 370. Palau
+269. 373. St. Vincent and the Grenadines
+269. 375. Solomon Islands
+269. 340. Vanuatu
+276. 450. Principality of Moldavia
+277. 444. Qajar Dynasty
+278. 358. Antigua and Barbuda
+278. 361. Benin
+278. 437. Majapahit
+278. 151. Bhutan
+278. 137. Burkina Faso
+278. 441. Nanda Empire
+278. 235. Burundi
+278. 141. Central African Republic
+278. 328. Comoros
+278. 134. El Salvador
+278. 138. Gabon
+278. 163. Hejaz
+278. 145. Iceland
+278. 232. Kiribati
+278. 150. Kosovo
+278. 332. Lesotho
+278. 147. Liberia
+278. 148. Luxembourg
+278. 136. Madagascar
+278. 132. Mauritania
+278. 369. Mauritius
+278. 139. Montenegro
+278. 133. Namibia
+278. 142. North Macedonia
+278. 140. Panama
+278. 135. Papua New Guinea
+278. 165. Paris Commune
+278. 371. Rwanda
+278. 144. Senegal
+278. 146. Sierra Leone
+278. 149. Somalia
+278. 143. Suriname
+278. 337. Timor-Leste
+311. 152. Djibouti

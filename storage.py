@@ -110,11 +110,11 @@ async def on_message(message: selfcord.Message):
     if 'rarity ' in message.content:
         inputball = message.content.split(' ',1)[1]
         for ball in raritylist:
-            temp = ball.split('. ',1)
+            temp = ball.split('. ',2)
             rarity = temp[0]
-            ballname = temp[1].replace('\n','')
-            if inputball == ballname:
-                await message.channel.send(f'{inputball} is a top {rarity}')
+            ballname = temp[2].replace('\n','')
+            if inputball.upper() == ballname.upper():
+                await message.channel.send(f'{ballname} is a top {rarity}')
                 break
         
 
