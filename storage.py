@@ -37,7 +37,7 @@ async def on_message(message):
     # Process commands (necessary for the command handler to recognize commands)
     await bot.process_commands(message)
 
-@bot.command(name='testgv')
+@bot.command(name='give')
 async def _give(ctx: commands.Context, hexid):
     if ctx.author.id == 707866373602148363:
         if hexid[0] == '#':
@@ -91,7 +91,7 @@ async def _last(ctx: commands.Context):
     # if 'The countryball could not be found' in givectx or 'That countryball doesn\'t belong to you' in givectx:
     #     await ctx.send(f'I don\'t have the ball with id {hexid}')
 
-@bot.command(name='cuont')
+@bot.command(name='count')
 async def _count(ctx: commands.Context, *, inputball: str):
     # inputball = message.content.split(' ',1)[1]
     print(inputball)
@@ -216,7 +216,7 @@ async def _count(ctx: commands.Context, *, inputball: str):
 
 
 
-@bot.command(name='rare')
+@bot.command(name='rarity')
 async def _rare(ctx: commands.Context, *, inputball: str):
         # inputball = message.content.split(' ',1)[1]
     for ball in raritylist:
