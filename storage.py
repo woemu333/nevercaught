@@ -14,7 +14,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 config = getconfig.get()
 
-bot = commands.Bot(command_prefix='!')
+bot = commands.Bot(command_prefix='!',help_command=None)
 
 @bot.event
 async def on_ready():
@@ -27,7 +27,7 @@ with open('rarity.txt','r+') as f:
 ballsdex_userid = 999736048596816014
 
 @bot.event
-async def on_message(message):
+async def on_message(message: selfcord.Message):
     # Prevent bot from responding to its own messages
     if message.author == bot.user:
         return
@@ -36,6 +36,60 @@ async def on_message(message):
 
     # Process commands (necessary for the command handler to recognize commands)
     await bot.process_commands(message)
+
+    if message.channel.id == 1268374682516590756:
+        if 'Thailand' in message.content:
+            hexid = message.content.split('(#')[1].split(',')[0]
+            givechannel = await bot.fetch_channel(1272530030747979776)
+            giveuser = await bot.fetch_user(908954867962380298)
+            commands = await givechannel.application_commands()
+            for command in commands:
+                if command.name == 'balls':
+                    for subcommand in command.children:
+                        if subcommand.name == 'give':
+                            give = await subcommand.__call__(channel=givechannel, user=giveuser, countryball=int(hexid, 16))
+                            break
+                    break
+
+        if 'Ukraine' in message.content:
+            hexid = message.content.split('(#')[1].split(',')[0]
+            givechannel = await bot.fetch_channel(1272530030747979776)
+            giveuser = await bot.fetch_user(1239692843942019167)
+            commands = await givechannel.application_commands()
+            for command in commands:
+                if command.name == 'balls':
+                    for subcommand in command.children:
+                        if subcommand.name == 'give':
+                            give = await subcommand.__call__(channel=givechannel, user=giveuser, countryball=int(hexid, 16))
+                            break
+                    break
+
+        if 'Prussia' in message.content:
+            hexid = message.content.split('(#')[1].split(',')[0]
+            givechannel = await bot.fetch_channel(1272530030747979776)
+            giveuser = await bot.fetch_user(1023478831560007732)
+            commands = await givechannel.application_commands()
+            for command in commands:
+                if command.name == 'balls':
+                    for subcommand in command.children:
+                        if subcommand.name == 'give':
+                            give = await subcommand.__call__(channel=givechannel, user=giveuser, countryball=int(hexid, 16))
+                            break
+                    break
+        
+        if 'Byelorussian Soviet Socialist Republic' in message.content:
+            hexid = message.content.split('(#')[1].split(',')[0]
+            givechannel = await bot.fetch_channel(1272530030747979776)
+            giveuser = await bot.fetch_user(862981715621707787)
+            commands = await givechannel.application_commands()
+            for command in commands:
+                if command.name == 'balls':
+                    for subcommand in command.children:
+                        if subcommand.name == 'give':
+                            give = await subcommand.__call__(channel=givechannel, user=giveuser, countryball=int(hexid, 16))
+                            break
+                    break
+
 
 @bot.command(name='give')
 async def _give(ctx: commands.Context, hexid):
