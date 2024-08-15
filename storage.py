@@ -110,7 +110,7 @@ async def _count(ctx: commands.Context, *, inputball: str):
         count = count.split(' ')[2]
         await ctx.send(f'I have {count} countryballs')
     
-    if inputball.upper() == 'RICHNESS':
+    elif inputball.upper() == 'RICHNESS':
         progress = await ctx.send(f'Adding up the values:\n`(----------------) 00.00%`')
 
         top11list = []
