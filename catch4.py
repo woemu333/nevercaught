@@ -88,7 +88,14 @@ async def on_message(message: selfcord.Message):
             ball = makePrediction(img_url)
             catchball.append(ball)
             await message.channel.send(ball)
-            interaction = await message.components[0].children[0].click()
+            for _ in range(5):
+                try:
+                    interaction = await message.components[0].children[0].click()
+                except Exception as e:
+                    print(e)
+                    await asyncio.sleep(2)
+                else:
+                    break
         
 
         elif f'<@{client.user.id}> You caught' in message.content:
@@ -135,7 +142,7 @@ async def on_message(message: selfcord.Message):
                 hexid = hexid[1:]
             
             #get commands and send give command
-            commands = [command async for command in give_channel.slash_commands()]
+            commands = await give_channel.application_commands()
             for command in commands:
                 if command.name == 'balls':
                     for subcommand in command.children:
@@ -230,6 +237,8 @@ async def on_message_edit(before: selfcord.Message, message: selfcord.Message):
             if give_user is None:
                 give_user = await client.fetch_user(1268896529351966771)
             give_guild = message.guild
+            if give_guild is None:
+                give_guild = await client.fetch_guild(1254513690976325742)
             give_channel = selfcord.utils.get(give_guild.channels, name='general')
             if give_channel is None:
                 give_channel = message.channel
@@ -240,7 +249,7 @@ async def on_message_edit(before: selfcord.Message, message: selfcord.Message):
                 hexid = hexid[1:]
             
             #get commands and send give command
-            commands = [command async for command in give_channel.slash_commands()]
+            commands = await give_channel.application_commands()
             for command in commands:
                 if command.name == 'balls':
                     for subcommand in command.children:
