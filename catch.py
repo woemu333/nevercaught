@@ -36,7 +36,7 @@ with open('rarity.txt','r+') as f:
 async def makePrediction(ballurl):
     try:
         async with aiohttp.ClientSession() as session:
-            response = requests.post('http://89.116.243.183:5005/ball', json={'password':config['password'],'ball':ballurl})
+            response = requests.post(f'http://{config['ip']}:5005/ball', json={'password':config['password'],'ball':ballurl})
     except requests.exceptions.ConnectionError:
         print('\nError connecting to the server.\n')
     if response.status_code == 200:
