@@ -183,7 +183,6 @@ async def on_message(message: selfcord.Message):
 
         elif message.content == f'<@{client.user.id}> Wrong name!':
             reference = await message.channel.fetch_message(message.reference.message_id)
-
             if reference.id in wrongs:
                 wrongs[reference.id] += 1
             else:
@@ -191,13 +190,35 @@ async def on_message(message: selfcord.Message):
             print(wrongs[reference.id])
             if wrongs[reference.id] == 4:
                 mention = f'<@{config["your_user_id"]}>'
-                catchmsg = f'Wrong name after 4 attempts! {mention} {message.jump_url}'
-                webhook = DiscordWebhook(url=all_catches, content=catchmsg)
-                response = webhook.execute()
+                try:
+                    catchmsg = f'Wrong name after 4 attempts! {mention} {message.jump_url}\nMy guess: {makePrediction(reference.attachments[0].url)}\n{reference.attachments[0].url}'
+                    webhook = DiscordWebhook(url=all_catches, content=catchmsg)
+                    response = webhook.execute()
+                except:
+                    catchmsg = f'Wrong name after 4 attempts! {mention} {message.jump_url}'
+                    webhook = DiscordWebhook(url=all_catches, content=catchmsg)
+                    response = webhook.execute()
             else:
-                await asyncio.sleep(4)
-                img_url = message.attachments[0].url
+                now = datetime.datetime.now()
+                if len(queue) == 0:
+                    queue.append(now)
+                else:
+                    delta = now - queue[-1]
+                    if queue[-1] > now:
+                        queue.append(queue[-1]+datetime.timedelta(seconds=4))
+                    elif delta.seconds < 4:
+                        queue.append(queue[-1]+datetime.timedelta(seconds=4))
+                    else:
+                        queue.append(now)
+                if queue[-1] > now:
+                    delay = queue[-1] - now
+                    await asyncio.sleep(delay.seconds)
+                
+                
+                DiscordWebhook(url=all_catches, content=reference.content).execute()
+                img_url = reference.attachments[0].url
                 ball = makePrediction(img_url)
+                DiscordWebhook(url=all_catches, content=f'{img_url}\nattempt {wrongs[reference.id]}: {ball} (user: {client.user.name})').execute()
                 catchball.append(ball)
                 interaction = await reference.components[0].children[0].click()
 
