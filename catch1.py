@@ -217,14 +217,8 @@ async def on_message(message: selfcord.Message):
                 print(wrongs[reference.id])
                 if wrongs[reference.id] == 4:
                     mention = f'<@{config["your_user_id"]}>'
-                    try:
-                        catchmsg = f'Wrong name after 4 attempts! {mention} {message.jump_url}\nMy guess: {makePrediction(reference.attachments[0].url)}\n{reference.attachments[0].url}'
-                        webhook = DiscordWebhook(url=all_catches, content=catchmsg).execute()
-                        webhook = DiscordWebhook(url=webhookurl, content=catchmsg).execute()
-                    except:
-                        catchmsg = f'Wrong name after 4 attempts! {mention} {message.jump_url}'
-                        webhook = DiscordWebhook(url=all_catches, content=catchmsg)
-                        response = webhook.execute()
+                    catchmsg = f'Wrong name after 4 attempts! {mention} {message.jump_url}\nMy guess: {await makePrediction(reference.attachments[0].url)}\n{reference.attachments[0].url}'
+                    webhook = DiscordWebhook(url=webhookurl, content=catchmsg).execute()
                 else:
                     now = datetime.datetime.now()
                     if len(queue) == 0:
