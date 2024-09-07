@@ -191,6 +191,7 @@ servers = {
 }
 
 roles = {
+    'allservers':'proficour2',
     'storage':'justastorage',
     'catch':{
         '1':'pizzahut0667',
@@ -211,6 +212,7 @@ roles = {
 }
 
 users = {
+    'proficour2':1268101370997641291,
     'justastorage':1273823384278532128,
     'pizzahut0667':1266938888119910500,
     'eddy2.0sadly':1272676930658762844,
@@ -242,6 +244,8 @@ async def on_message(message: selfcord.Message):
         # if message.channel.id == 1281843539369529505: #storage account dms
             if message.content.startswith('.status'):
                 offline = []
+                storage_channel = await client.fetch_channel(1281843539369529505)
+                await storage_channel.send('ping')
                 for guild in client.guilds:
                     if guild.id != 1254513690976325742: #farm server with the boys
                         required_users = []
@@ -265,8 +269,21 @@ async def on_message(message: selfcord.Message):
                                     required_users.remove(required_user)
                         # print(required_users)
                         offline = offline + required_users
+                storage_online = False
+                messages = [msg async for msg in storage_channel.history(limit=10)]
+                for msg in messages:
+                    print(msg.content)
+                    print(msg.author.id)
+                    if msg.content == 'pong' and msg.author.id == 1273823384278532128:
+                        storage_online = True
+                        break
+                if not storage_online:
+                    offline.append(roles['storage'])
+
                 offline = list(set(offline))
                 online = list(users.keys())
+                print(list(users.keys()))
+                print(offline)
                 for user in online:
                     if user in offline:
                         online.remove(user)
@@ -280,6 +297,7 @@ async def on_message(message: selfcord.Message):
                     'offline':'❌'
                 }
                 sendmsg = f'''## Status for each account:
+{emojidict[status[roles['allservers']]]} - `allservers` - <@{users[roles['allservers']]}>
 {emojidict[status[roles['storage']]]} - `storage` - <@{users[roles['storage']]}>
 {emojidict[status[roles['catch']['1']]]} - `catch 1` - <@{users[roles['catch']['1']]}>
 {emojidict[status[roles['catch']['2']]]} - `catch 2` - <@{users[roles['catch']['2']]}>

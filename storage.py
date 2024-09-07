@@ -26,7 +26,7 @@ class ErrorWebhookHandler:
     def write(self, message):
         sys.__stdout__.write(message)
         if message.strip():  # Avoid sending empty messages
-            if '[warning ]' not in message.lower():
+            if '[warning ]' not in message.lower() or 'did not receive a response from discord' not in message.lower():
                 # Send message to webhook
                 data = {'content': f'`{os.path.basename(__file__)}`: {message}'}
                 try:
@@ -38,7 +38,7 @@ class ErrorWebhookHandler:
     def flush(self):
         sys.__stderr__.flush()
 
-error_handler = ErrorWebhookHandler(config['urls']['own2'])
+error_handler = ErrorWebhookHandler(config['urls']['storage'])
 
 # Redirect stderr to the webhook handler
 sys.stderr = error_handler
@@ -65,6 +65,11 @@ async def on_message(message: selfcord.Message):
 
     # Process commands (necessary for the command handler to recognize commands)
     await bot.process_commands(message)
+
+    if message.channel.id == 1281843539369529505:
+        if message.author.id == 1268101370997641291:
+            if message.content == 'ping':
+                await message.channel.send('pong')
 
     if message.channel.id == 1268374682516590756:
         if 'Thailand' in message.content:

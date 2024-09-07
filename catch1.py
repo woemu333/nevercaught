@@ -239,9 +239,16 @@ async def on_message(message: selfcord.Message):
                     img_url = reference.attachments[0].url
                     ball = await makePrediction(img_url)
                     
-                    DiscordWebhook(url=webhookurl, content=f'attempt {wrongs[reference.id]}: {ball}\nuser: {client.user.name}\nurl: {reference.jump_url}').execute()
+                    # DiscordWebhook(url=webhookurl, content=f'attempt {wrongs[reference.id]}: {ball}\nuser: {client.user.name}\nurl: {reference.jump_url}').execute()
                     catchball.append(ball)
-                    interaction = await reference.components[0].children[0].click()
+                    for _ in range(5):
+                        try:
+                            interaction = await reference.components[0].children[0].click()
+                        except Exception as e:
+                            print(e)
+                            await asyncio.sleep(2)
+                        else:
+                            break
 
 
 
@@ -327,26 +334,6 @@ async def on_message_edit(before: selfcord.Message, message: selfcord.Message):
                 webhook = DiscordWebhook(url=rare_catches, content=catchmsg)
                 response = webhook.execute()
 
-
-        elif message.content == f'<@{client.user.id}> Wrong name!':
-            reference = await message.channel.fetch_message(message.reference.message_id)
-
-            if reference.id in wrongs:
-                wrongs[reference.id] += 1
-            else:
-                wrongs[reference.id] = 1
-            print(wrongs[reference.id])
-            if wrongs[reference.id] == 4:
-                mention = f'<@{config["your_user_id"]}>'
-                catchmsg = f'Wrong name after 4 attempts! {mention} {message.jump_url}'
-                webhook = DiscordWebhook(url=all_catches, content=catchmsg)
-                response = webhook.execute()
-            else:
-                await asyncio.sleep(4)
-                img_url = message.attachments[0].url
-                ball = makePrediction(img_url)
-                catchball.append(ball)
-                interaction = await reference.components[0].children[0].click()
 
 @client.event
 async def on_modal(modal: selfcord.Modal):
