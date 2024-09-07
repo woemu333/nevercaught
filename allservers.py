@@ -275,7 +275,6 @@ async def on_message(message: selfcord.Message):
                     status[user] = 'online'
                 for user in offline:
                     status[user] = 'offline'
-                print(users[0[1]])
                 emojidict = {
                     'online':'✅',
                     'offline':'❌'
