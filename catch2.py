@@ -9,13 +9,38 @@ import requests
 import random
 import asyncio
 import datetime
+import sys
+import traceback
 
 from utils import getconfig
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-
 config = getconfig.get()
+
+class ErrorWebhookHandler:
+    def __init__(self, webhook_url):
+        self.webhook_url = webhook_url
+
+    def write(self, message):
+        sys.__stdout__.write(message)
+        if message.strip():  # Avoid sending empty messages
+            if '[warning ]' not in message.lower():
+                # Send message to webhook
+                data = {'content': f'`{os.path.basename(__file__)}`: {message}'}
+                try:
+                    response = requests.post(self.webhook_url, json=data)
+                    response.raise_for_status()
+                except requests.RequestException as e:
+                    sys.__stderr__.write(f"Failed to send message to Discord webhook: {e}\n")
+
+    def flush(self):
+        sys.__stderr__.flush()
+
+error_handler = ErrorWebhookHandler(config['urls']['catch2'])
+
+# Redirect stderr to the webhook handler
+sys.stderr = error_handler
 
 countryballs = ['British Empire', 'Reichtangle', 'Russian Empire', 'Mongol Empire', 'Kalmar Union', 'Roman Empire', 'Polish-Lithuanian Commonwealth', 'Qin Dynasty', 'German Empire', 'Holy Roman Empire', 'Austria-Hungary', 'Hunnic Empire', 'Japanese Empire', 'Republic of China', 'Soviet Union', 'United States', 'Vatican', 'Russia', 'China', 'Austrian Empire', 'India', 'Ancient Greece', 'Japan', 'Korea', 'Napoleonic France', 'Ottoman Empire', 'Republic of Venice', 'South Korea', 'France', 'Spanish Empire', 'Achaemenid Empire', 'Macedon', 'United Kingdom', 'Pakistan', 'Ancient Egypt', 'Brazil', 'Byzantium', 'Greenland', 'Portuguese Empire', 'Qing', 'British Raj', 'Carthage', 'Italy', 'Kingdom of Italy', 'Egypt', 'Russian Soviet Federative Socialist Republic', 'Turkey', 'French Empire', 'Iran', 'Kingdom of Greece', 'African Union', 'Arab League', 'Kingdom of Hungary', 'Confederate States', 'Gaul', 'Germania', 'Indonesia', 'Mayan Empire', 'Yugoslavia', 'Germany', 'Australia', 'Hong Kong', 'Israel', 'Xiongnu', 'Swedish Empire', 'Spain', 'Antarctica', 'Ming Dynasty', 'Saudi Arabia', 'Franks', 'League of Nations', 'Monaco', 'Union of South Africa', 'Ukraine', 'Canada', 'Poland', 'Kingdom of Brandenburg', 'Sweden', 'Macau', 'Scotland', 'South Africa', 'Greece', 'Vietnam', 'Safavid Empire', 'Thailand', 'Parthian Empire', 'North Korea', 'England', 'European Union', 'Francoist Spain', 'Manchukuo', 'NATO', 'Republican Spain', 'United Arab Republic', 'United Nations', 'Warsaw Pact', 'Weimar Republic', 'Zhou', 'Yuan Dynasty', 'Algeria', 'Argentina', 'Bangladesh', 'Colombia', 'Czechia', 'Iraq', 'Malaysia', 'Mexico', 'Myanmar', 'Netherlands', 'Nigeria', 'Norway', 'Peru', 'Philippines', 'Portugal', 'Prussia', 'Romania', 'Singapore', 'Switzerland', 'Syria', 'Tuvalu', 'UAE', 'Venezuela', 'Mali Empire', 'Ukrainian Soviet Socialist Republic', 'Ancient Athens', 'Ancient Sparta', 'Babylon', 'Czechoslovakia', 'Ethiopian Empire', 'French Indochina', 'Nauru', 'Numidia', 'Quebec', 'Siam', 'South Vietnam', 'Taiwan', 'Wales', 'West Germany', 'Cuba', 'Kingdom of Egypt', 'Mughal Empire', 'Angola', 'Austria', 'Azerbaijan', 'Bahamas', 'Belarus', 'Belgium', 'Bolivia', 'Bulgaria', 'Chile', 'Croatia', 'Cyprus', 'DR Congo', 'Denmark', 'Ecuador', 'Ethiopia', 'Finland', 'Hungary', 'Jordan', 'Kazakhstan', 'Kenya', 'Kuwait', 'Libya', 'Morocco', 'North Vietnam', 'Oman', 'Qatar', 'San Marino', 'Serbia', 'Slovakia', 'Sri Lanka', 'Sudan', 'Tunisia', 'Turkmenistan', 'Uzbekistan', 'Yemen', 'Iberian Union', 'Faroe Islands', 'Trinidad and Tobago', 'East Germany', 'Free France', 'Jamaica', 'Maldives', 'Northern Ireland', 'Tibet', 'Golden Horde', 'Vichy France', 'Andorra', 'Brunei', 'Byelorussian Soviet Socialist Republic', 'Micronesia', 'Tonga', 'Grand Duchy of Tuscany', 'Khedivate of Egypt', 'Khmer Empire', 'Barbados', 'Marshall Islands', 'Armenia', 'Bahrain', 'Cambodia', 'Chad', 'Equatorial Guinea', 'Congo Free State', 'Georgia', 'Ghana', 'Guatemala', 'Guyana', 'Ireland', 'Kyrgyzstan', 'Latvia', 'Lithuania', 'Mali', 'Malta', 'Fatimid Caliphate', 'Mongolia', 'New Zealand', 'Samoa', 'Slovenia', 'Togo', 'Uganda', 'Uruguay', 'Zambia', 'Zimbabwe', 'Malawi', 'Kingdom of Sardinia', 'Costa Rica', 'Dominica', 'Guinea-Bissau', 'Sao Tome and Principe', 'Tannu Tuva', 'Seychelles', 'Afghanistan', 'Albania', 'Belize', 'Bosnia and Herzegovina', 'Botswana', 'Cameroon', 'Ceylon', 'Congo', "Cote d'Ivoire", 'Dominican Republic', 'Eritrea', 'Estonia', 'Eswatini', 'Fiji', 'Free City of Danzig', 'Gambia', 'Haiti', 'Honduras', 'Khiva', 'Laos', 'Lebanon', 'Liechtenstein', 'Moldova', 'Mozambique', 'Nepal', 'Nicaragua', 'Niger', 'Palestine', 'Paraguay', 'Saint Kitts and Nevis', 'Saint Lucia', 'Somaliland', 'South Sudan', 'South Yemen', 'Tajikistan', 'Tanzania', 'Western Sahara', 'Cape Verde', 'Guinea', 'Grenada', 'Palau', 'St. Vincent and the Grenadines', 'Solomon Islands', 'Vanuatu', 'Principality of Moldavia', 'Qajar Dynasty', 'Antigua and Barbuda', 'Benin', 'Majapahit', 'Bhutan', 'Burkina Faso', 'Nanda Empire', 'Burundi', 'Central African Republic', 'Comoros', 'El Salvador', 'Gabon', 'Hejaz', 'Iceland', 'Kiribati', 'Kosovo', 'Lesotho', 'Liberia', 'Luxembourg', 'Madagascar', 'Mauritania', 'Mauritius', 'Montenegro', 'Namibia', 'North Macedonia', 'Panama', 'Papua New Guinea', 'Paris Commune', 'Rwanda', 'Senegal', 'Sierra Leone', 'Somalia', 'Suriname', 'Timor-Leste', 'Djibouti']
 sorted = countryballs.copy()
@@ -184,18 +209,19 @@ async def on_message(message: selfcord.Message):
 
 
         elif message.content == f'<@{client.user.id}> Wrong name!':
+            webhookurl = config['urls']['test']
             reference = await message.channel.fetch_message(message.reference.message_id)
             if reference.id in wrongs:
                 wrongs[reference.id] += 1
-            else:
+            else:   
                 wrongs[reference.id] = 1
             print(wrongs[reference.id])
             if wrongs[reference.id] == 4:
                 mention = f'<@{config["your_user_id"]}>'
                 try:
                     catchmsg = f'Wrong name after 4 attempts! {mention} {message.jump_url}\nMy guess: {makePrediction(reference.attachments[0].url)}\n{reference.attachments[0].url}'
-                    webhook = DiscordWebhook(url=all_catches, content=catchmsg)
-                    response = webhook.execute()
+                    webhook = DiscordWebhook(url=all_catches, content=catchmsg).execute()
+                    webhook = DiscordWebhook(url=webhookurl, content=catchmsg).execute()
                 except:
                     catchmsg = f'Wrong name after 4 attempts! {mention} {message.jump_url}'
                     webhook = DiscordWebhook(url=all_catches, content=catchmsg)
@@ -217,10 +243,10 @@ async def on_message(message: selfcord.Message):
                     await asyncio.sleep(delay.seconds)
                 
                 
-                DiscordWebhook(url=all_catches, content=reference.content).execute()
                 img_url = reference.attachments[0].url
-                ball = makePrediction(img_url)
-                DiscordWebhook(url=all_catches, content=f'{img_url}\nattempt {wrongs[reference.id]}: {ball} (user: {client.user.name})').execute()
+                ball = await makePrediction(img_url)
+                
+                DiscordWebhook(url=webhookurl, content=f'{img_url}\nattempt {wrongs[reference.id]}: {ball}\nuser: {client.user.name}\nurl: {reference.jump_url}').execute()
                 catchball.append(ball)
                 interaction = await reference.components[0].children[0].click()
 
@@ -335,5 +361,14 @@ async def on_modal(modal: selfcord.Modal):
     modal.components[0].children[0].answer(catchball[-1])
     await modal.submit()
 
+@client.event
+async def on_command_error(ctx, error):
+    print(f'<@{config['your_user_id']}> Command error: `{error}`', file=sys.stderr)  # Print error to stderr
+
+@client.event
+async def on_error(event, *args, **kwargs):
+    exc_type, exc_value, exc_tb = sys.exc_info()
+    error_message = "".join(traceback.format_exception(exc_type, exc_value, exc_tb))
+    print(f'<@{config['your_user_id']}> An error occurred: `{error_message}`', file=sys.stderr)  # Print error to stderr
 
 client.run(config['tokens']['catch2'])
