@@ -26,9 +26,12 @@ class ErrorWebhookHandler:
     def write(self, message):
         sys.__stdout__.write(message)
         if message.strip():  # Avoid sending empty messages
-            if '[warning ]' not in message.lower() or 'did not receive a response from discord' not in message.lower():
+            if '[warning ]' not in message.lower() or 'selfcord.errors.InvalidData: Did not receive a response from Discord' not in message:
+                if 'You need to verify your account in order to perform this action.' in message:
+                    data = {'content': f'`{os.path.basename(__file__)}`: {os.path.basename(__file__)[:-3]} needs to be verified.'}
+                else:
+                    data = {'content': f'`{os.path.basename(__file__)}`: {message}'}
                 # Send message to webhook
-                data = {'content': f'`{os.path.basename(__file__)}`: {message}'}
                 try:
                     response = requests.post(self.webhook_url, json=data)
                     response.raise_for_status()
@@ -77,21 +80,25 @@ async def on_message(message: selfcord.Message):
             if 'Thailand' in message.content:
                 ball = 'Thailand'
                 giveuser = await bot.fetch_user(908954867962380298)
-            if 'Ukraine' in message.content:
+            elif 'Ukraine' in message.content:
                 ball = 'Ukraine'
                 giveuser = await bot.fetch_user(1239692843942019167)
-            if 'Prussia' in message.content:
+            elif 'Prussia' in message.content:
                 ball = 'Prussia'
                 giveuser = await bot.fetch_user(1023478831560007732)
-            if 'Byelorussian Soviet Socialist Republic' in message.content:
+            elif 'Byelorussian Soviet Socialist Republic' in message.content:
                 ball = 'Byelorussian Soviet Socialist Republic'
                 giveuser = await bot.fetch_user(862981715621707787)
+            else:
+                return
+        except selfcord.errors.Forbidden:
+            return
+        
+        try:
+            givechannel = await bot.fetch_channel(1272530030747979776)
         except selfcord.errors.Forbidden:
             DiscordWebhook(url=config['urls']['gives'], content=f'{ball} `(#{hexid})` could not be given because <@1273823384278532128> needs to be verified.').execute()
             return
-        
-        
-        givechannel = await bot.fetch_channel(1272530030747979776)
         commands = await givechannel.application_commands()
         for command in commands:
             if command.name == 'balls':
