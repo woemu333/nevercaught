@@ -25,14 +25,18 @@ class ErrorWebhookHandler:
     def write(self, message):
         sys.__stdout__.write(message)
         if message.strip():  # Avoid sending empty messages
-            if '[warning ]' not in message.lower():
+            if '[warning ]' not in message.lower() or 'selfcord.errors.InvalidData: Did not receive a response from Discord' not in message:
+                if 'You need to verify your account in order to perform this action.' in message:
+                    data = {'content': f'`{os.path.basename(__file__)}`: {os.path.basename(__file__)[:-3]} needs to be verified.'}
+                else:
+                    data = {'content': f'`{os.path.basename(__file__)}`: {message}'}
                 # Send message to webhook
-                data = {'content': f'`{os.path.basename(__file__)}`: {message}'}
                 try:
                     response = requests.post(self.webhook_url, json=data)
                     response.raise_for_status()
                 except requests.RequestException as e:
                     sys.__stderr__.write(f"Failed to send message to Discord webhook: {e}\n")
+
 
     def flush(self):
         sys.__stderr__.flush()
@@ -243,7 +247,7 @@ async def on_message(message: selfcord.Message):
                     catchball.append(ball)
                     for _ in range(5):
                         try:
-                            interaction = await reference.components[0].children[0].click()
+                            await reference.components[0].children[0].click()
                         except Exception as e:
                             print(e)
                             await asyncio.sleep(2)
@@ -318,8 +322,16 @@ async def on_message_edit(before: selfcord.Message, message: selfcord.Message):
             emoji = ''
             await asyncio.sleep(5)
             if type(give) == selfcord.interactions.Interaction:
-                give_text = give.message.content
-                emoji = '<'+give_text.split('<',1)[1].split('>',1)[0]+'>'
+                try:
+                    give_text = give.message.content
+                    emoji = '<'+give_text.split('<',1)[1].split('>',1)[0]+'>'
+                except IndexError:
+                    await asyncio.sleep(5)
+                    try:
+                        give_text = give.message.content
+                        emoji = '<'+give_text.split('<',1)[1].split('>',1)[0]+'>'
+                    except IndexError:
+                        emoji = '<no emoji found>'
             else:
                 emoji = '<emoji not found>'
             
