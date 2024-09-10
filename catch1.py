@@ -95,9 +95,9 @@ async def on_message(message: selfcord.Message):
             else:
                 delta = now - queue[-1]
                 if queue[-1] > now:
-                    queue.append(queue[-1]+datetime.timedelta(seconds=4))
-                elif delta.seconds < 4:
-                    queue.append(queue[-1]+datetime.timedelta(seconds=4))
+                    queue.append(queue[-1]+datetime.timedelta(seconds=int(config['queue_time'])))
+                elif delta.seconds < int(config['queue_time']):
+                    queue.append(queue[-1]+datetime.timedelta(seconds=int(config['queue_time'])))
                 else:
                     queue.append(now)
             if queue[-1] > now:
@@ -208,9 +208,9 @@ async def on_message(message: selfcord.Message):
                     else:
                         delta = now - queue[-1]
                         if queue[-1] > now:
-                            queue.append(queue[-1]+datetime.timedelta(seconds=4))
-                        elif delta.seconds < 4:
-                            queue.append(queue[-1]+datetime.timedelta(seconds=4))
+                            queue.append(queue[-1]+datetime.timedelta(seconds=int(config['queue_time'])))
+                        elif delta.seconds < int(config['queue_time']):
+                            queue.append(queue[-1]+datetime.timedelta(seconds=int(config['queue_time'])))
                         else:
                             queue.append(now)
                     if queue[-1] > now:
