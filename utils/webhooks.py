@@ -38,5 +38,5 @@ class ErrorWebhookHandler:
         sys.__stderr__.flush()
 
 
-def makeObject(webhookurl):
-    return ErrorWebhookHandler(webhookurl)
+def makeObject(webhookurl,file):
+    return ErrorWebhookHandler(webhookurl,file)
