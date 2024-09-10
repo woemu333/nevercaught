@@ -1,10 +1,12 @@
 import sys
 import requests
 import os
+import yaml
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
-import getconfig
-config = getconfig.get()
+
+with open('config.yml', 'r') as file:
+    config = yaml.safe_load(file)
 
 class ErrorWebhookHandler:
     def __init__(self, webhook_url):
