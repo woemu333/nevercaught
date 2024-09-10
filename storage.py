@@ -625,5 +625,5 @@ async def on_error(event, *args, **kwargs):
     error_message = "".join(traceback.format_exception(exc_type, exc_value, exc_tb))
     print(f'<@{config['your_user_id']}> An error occurred: `{error_message}`', file=sys.stderr)  # Print error to stderr
 
-bot.run('a')
-# bot.run(config['tokens']['storage'])
+# bot.run('a')
+bot.run(config['tokens']['storage'])
