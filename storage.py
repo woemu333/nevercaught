@@ -14,34 +14,13 @@ import requests
 import traceback
 
 from utils import getconfig
+from utils import webhooks
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 config = getconfig.get()
 
-class ErrorWebhookHandler:
-    def __init__(self, webhook_url):
-        self.webhook_url = webhook_url
-
-    def write(self, message):
-        sys.__stdout__.write(message)
-        if message.strip():  # Avoid sending empty messages
-            if '[warning ]' not in message.lower() or 'selfcord.errors.InvalidData: Did not receive a response from Discord' not in message:
-                if 'You need to verify your account in order to perform this action.' in message:
-                    data = {'content': f'`{os.path.basename(__file__)}`: {os.path.basename(__file__)[:-3]} needs to be verified.'}
-                else:
-                    data = {'content': f'`{os.path.basename(__file__)}`: {message}'}
-                # Send message to webhook
-                try:
-                    response = requests.post(self.webhook_url, json=data)
-                    response.raise_for_status()
-                except requests.RequestException as e:
-                    sys.__stderr__.write(f"Failed to send message to Discord webhook: {e}\n")
-
-    def flush(self):
-        sys.__stderr__.flush()
-
-error_handler = ErrorWebhookHandler(config['urls']['storage'])
+error_handler = webhooks.makeObject(config['urls']['storage'])
 
 # Redirect stderr to the webhook handler
 sys.stderr = error_handler
@@ -646,4 +625,5 @@ async def on_error(event, *args, **kwargs):
     error_message = "".join(traceback.format_exception(exc_type, exc_value, exc_tb))
     print(f'<@{config['your_user_id']}> An error occurred: `{error_message}`', file=sys.stderr)  # Print error to stderr
 
-bot.run(config['tokens']['storage'])
+bot.run('a')
+# bot.run(config['tokens']['storage'])
