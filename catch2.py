@@ -19,7 +19,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 config = getconfig.get()
 
-error_handler = webhooks.makeObject(config['urls']['catch2'])
+error_handler = webhooks.makeObject(config['urls']['catch2'],os.path.basename(__file__))
 
 # Redirect stderr to the webhook handler
 sys.stderr = error_handler

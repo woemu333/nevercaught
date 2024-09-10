@@ -5,16 +5,10 @@ import yaml
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-def get():
-    with open('config.yml', 'r') as file:
-        config = yaml.safe_load(file)
-    return config
-
-config = get()
-
 class ErrorWebhookHandler:
-    def __init__(self, webhook_url):
+    def __init__(self, webhook_url,file):
         self.webhook_url = webhook_url
+        self.file = file
 
     def write(self, message):
         sys.__stdout__.write(message)
@@ -28,9 +22,9 @@ class ErrorWebhookHandler:
             if 'Command error' in message and 'is not found' in message:
                 return
             if 'You need to verify your account in order to perform this action.' in message:
-                data = {'content': f'`{os.path.basename(__file__)}`: <@{config['your_user_id']}>{os.path.basename(__file__)[:-3]} needs to be verified.'}
+                data = {'content': f'`{self.file}`: <@707866373602148363> {self.file[:-3]} needs to be verified.'}
             else:
-                data = {'content': f'`{os.path.basename(__file__)}`: {message}'}
+                data = {'content': f'`{self.file}`: {message}'}
 
             # Send message to webhook
             try:
