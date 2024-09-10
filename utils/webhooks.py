@@ -5,8 +5,12 @@ import yaml
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-with open('config.yml', 'r') as file:
-    config = yaml.safe_load(file)
+def get():
+    with open('config.yml', 'r') as file:
+        config = yaml.safe_load(file)
+    return config
+
+config = get()
 
 class ErrorWebhookHandler:
     def __init__(self, webhook_url):
