@@ -1,8 +1,9 @@
 import sys
 import requests
 import os
-import getconfig
+
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
+import getconfig
 config = getconfig.get()
 
 class ErrorWebhookHandler:
